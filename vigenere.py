@@ -2,7 +2,6 @@ from secret import *
 import requests
 from splinter import Browser
 
-result2="-- MESSAGE w/Key #1 = 'hackdfw' ----------------yisgedogeu"
 vigenere_url='https://hdfw-tehgame.herokuapp.com/challenge/vigenere'
 vigenere_cracker='http://www.mygeocachingprofile.com/codebreaker.vigenerecipher.aspx'
 capped_Vigenere = ''
@@ -29,9 +28,7 @@ def solveVigenere():
 vigenere=getVigenere()
 print(vigenere)
 solved_Vigenere=solveVigenere()
-print(solved_Vigenere)
 for x in range(0,10):
-		print(x)
 		if (vigenere[x].isupper()):
 				capped_Vigenere += solved_Vigenere[x].upper()
 		else:
