@@ -27,15 +27,27 @@ def solvePlayfair(playfair):
 		return(result)
 
 def formatPlayfair(playfair):
-		playfair = playfair.replace("I","J")
+		playfairarray=[]
+		subs=[]
+		playfairarray.append(playfair.replace("I","J"))
 		if(len(playfair) > 10):
-				playfair = playfair.replace("X","")
-		return playfair
+				c=playfair.count("X")
+				if(c<=2):
+						playfairarray.append(playfair.replace("X",""))
+				elif (c==3):
+						subs=playfair.split("X")
+						playfairarray.append(subs[0]+subs[1]+subs[2]+"X"+subs[3])
+						playfairarray.append(subs[0]+subs[1]+"X"+subs[2]+subs[3])
+						playfairarray.append(subs[0]+"X"+subs[1]+subs[2]+subs[3])
+						playfairarray.append(playfair)
+		return playfairarray
 		
 def postPlayfair(playfair):
-		res=requests.post(playfair_url+"/verify",headers=post_headers,data='{"answer":"'+playfair+'"}')
-		if("Correct" in res.json()["message"]):
-				print("Success! "+playfair)
-		else:
-				print("ERROR "+playfair)
+		for x in playfair:
+				res=requests.post(playfair_url+"/verify",headers=post_headers,data='{"answer":"'+x+'"}')
+				if("Correct" in res.json()["message"]):
+						print("Success! "+x)
+						exit()
+				else:
+						print("ERROR "+x)
 postPlayfair(formatPlayfair(solvePlayfair(getPlayfair())))
