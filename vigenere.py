@@ -26,16 +26,14 @@ def solveVigenere():
 		return(result[49:59].strip())
 
 vigenere=getVigenere()
-print(vigenere)
 solved_Vigenere=solveVigenere()
 for x in range(0,10):
 		if (vigenere[x].isupper()):
 				capped_Vigenere += solved_Vigenere[x].upper()
 		else:
 				capped_Vigenere += solved_Vigenere[x]
-print(capped_Vigenere)
 res=requests.post(vigenere_url+"/verify",headers=post_headers,data='{"answer":"'+capped_Vigenere+'"}')
 if("Correct" in res.json()["message"]):
-		print("Success!")
+		print("Success! " + capped_Vigenere)
 else:
-		print("Incorrect answer.")
+		print("ERROR " + capped_Vigenere)
