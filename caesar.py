@@ -1,6 +1,7 @@
 from secret import *
 import requests
 from splinter import Browser
+import time
 
 caesar_url='https://hdfw-tehgame.herokuapp.com/challenge/caesar'
 caesar_cracker='http://www.mygeocachingprofile.com/codebreaker.caesarcipher.aspx'

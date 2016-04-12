@@ -28,18 +28,20 @@ def solvePlayfair(playfair):
 
 def formatPlayfair(playfair):
 		playfairarray=[]
-		subs=[]
-		playfairarray.append(playfair.replace("I","J"))
-		if(len(playfair) > 10):
-				c=playfair.count("X")
-				if(c<=2):
-						playfairarray.append(playfair.replace("X",""))
-				elif (c==3):
-						subs=playfair.split("X")
-						playfairarray.append(subs[0]+subs[1]+subs[2]+"X"+subs[3])
-						playfairarray.append(subs[0]+subs[1]+"X"+subs[2]+subs[3])
-						playfairarray.append(subs[0]+"X"+subs[1]+subs[2]+subs[3])
-						playfairarray.append(playfair)
+		playfairarray.append(playfair)
+		c=playfair.count("I")
+		d=playfair.count("X")
+		if(len(playfair)==10):
+				if(c>0):
+						j_playfair=playfair.replace("I","J")
+						playfairarray.append(j_playfair)
+		else:
+				table=str.maketrans("","","X")
+				if(c>0):
+						j_playfair=playfair.replace("I","J")
+						playfairarray.append(j_playfair)
+						playfairarray.append(j_playfair.translate(table))
+				playfairarray.append(playfair.translate(table))
 		return playfairarray
 		
 def postPlayfair(playfair):
@@ -50,4 +52,8 @@ def postPlayfair(playfair):
 						exit()
 				else:
 						print("ERROR "+x)
+						
+def combNum(num,group):
+		return(factorial(group)/(factorial(num)*factorial(group-num)))
+
 postPlayfair(formatPlayfair(solvePlayfair(getPlayfair())))
