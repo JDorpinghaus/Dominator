@@ -40,8 +40,8 @@ def formatPlayfair(playfair):
 				if(c>0):
 						j_playfair=playfair.replace("I","J")
 						playfairarray.append(j_playfair)
-						playfairarray.append(j_playfair.translate(table))
-				playfairarray.append(playfair.translate(table))
+						playfairarray.append(removeX(j_playfair))
+				playfairarray.append(removeX(playfair))
 		return playfairarray
 		
 def postPlayfair(playfair):
@@ -55,5 +55,18 @@ def postPlayfair(playfair):
 						
 def combNum(num,group):
 		return(factorial(group)/(factorial(num)*factorial(group-num)))
+		
+def removeX(playfair):
+		newplayfair=list(playfair)
+		for i, x in enumerate(newplayfair):
+				if (x=='X'):
+						if(i!=0):
+								if(i!=len(newplayfair)-1):
+										if(newplayfair[i-1]==newplayfair[i+1]):
+												newplayfair[i]=""
+								else:
+										newplayfair[i]=""
+		s="".join(newplayfair)
+		return s
 
 postPlayfair(formatPlayfair(solvePlayfair(getPlayfair())))
