@@ -28,20 +28,23 @@ def solvePlayfair(playfair):
 
 def formatPlayfair(playfair):
 		playfairarray=[]
+		playfairitems=list(playfair)
 		playfairarray.append(playfair)
 		c=playfair.count("I")
 		d=playfair.count("X")
-		if(len(playfair)==10):
-				if(c>0):
-						j_playfair=playfair.replace("I","J")
-						playfairarray.append(j_playfair)
-		else:
-				table=str.maketrans("","","X")
-				if(c>0):
-						j_playfair=playfair.replace("I","J")
-						playfairarray.append(j_playfair)
-						playfairarray.append(removeX(j_playfair))
-				playfairarray.append(removeX(playfair))
+		if(c==1):
+				j_playfair=playfair.replace("I","J")
+				playfairarray.append(j_playfair)
+		elif(c==2):
+				j_playfair=playfair.replace("I","J")
+				playfairarray.append(j_playfair)
+				for i,x in enumerate(playfairitems):
+						newplayfairitems=playfairitems
+						if(x=="I"):
+								newplayfairitems[i]="J"
+								playfairarray.append("".join(newplayfairitems))
+		for i,x in enumerate(playfairarray):
+				playfairarray[i]=removeX(playfairarray[i])
 		return playfairarray
 		
 def postPlayfair(playfair):

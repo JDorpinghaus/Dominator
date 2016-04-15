@@ -1,8 +1,12 @@
 @ECHO OFF
 
 :LOOP
-ECHO Waiting for 5 minutes...
-  PING -n 300 127.0.0.1>nul
+ECHO Waiting for 1 minute...
+  PING -n 60 127.0.0.1>nul
+	ECHO Morse:
+	python morse.py
+	python morse.py
+	ECHO.
 	ECHO Vigenere:
   python vigenere.py
 	ECHO.
