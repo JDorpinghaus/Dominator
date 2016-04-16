@@ -1,1 +1,1 @@
-Automated HackDFW Game points scorer. 35 points every 30 minutes. Uses Python Splinter module to automate browser tasks of fetching and solving cryptography puzzles.
+Automated HackDFW Game points scorer. 370 points per hour. Uses Python Splinter module to automate browser tasks of fetching and solving cryptography puzzles.
