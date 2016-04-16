@@ -30,10 +30,6 @@ def convert():
 		song=AudioSegment.from_mp3("morse.mp3")
 		song.export("morse.wav",format="wav")
 
-# read audio samples
-input_data = read("morse.wav")
-audio = input_data[1]
-
 def formatAudio(audio):
 		single_audio=[]
 		pulses=[]
@@ -94,11 +90,8 @@ def postMorse(answer):
 				exit()
 		else:
 				print("ERROR "+answer)
-temp=getMorse()
+
 generateMP3(getMorse())
 convert()
-numbs=formatAudio(audio)
-mtext=formatCode(numbs)
-str = ''.join(mtext)
-answer=solveMorse(str)
-postMorse(answer)
+input_data = read("morse.wav")
+postMorse(solveMorse(''.join(formatCode(formatAudio(input_data[1])))))
